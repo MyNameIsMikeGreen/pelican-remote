@@ -7,17 +7,20 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class PelicanActivationRequest extends AsyncTask<Void, String, String> {
+class PelicanRequest extends AsyncTask<String, String, String> {
 
-    private static final String STATUS_URL = "http://192.168.1.142:8000/status";
-
+    /**
+     * Hits Pelican with a basic HTTP GET request as the provided endpoint.
+     * @param params The endpoint as a string.
+     * @return The HTTP response body.
+     */
     @Override
-    protected String doInBackground(Void... params) {
+    protected String doInBackground(String... params) {
         URL url;
         HttpURLConnection urlConnection = null;
         StringBuilder result = new StringBuilder();
         try {
-            url = new URL(STATUS_URL);
+            url = new URL(params[0]);
 
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = urlConnection.getInputStream();

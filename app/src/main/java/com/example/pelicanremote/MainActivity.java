@@ -15,7 +15,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.activateButton).setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v) {
-                new PelicanActivationRequest().execute();
+                new PelicanRequest().execute(getString(R.string.endpoint_activate));
+            }
+        });
+
+        findViewById(R.id.deactivateButton).setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v) {
+                new PelicanRequest().execute(getString(R.string.endpoint_deactivate));
             }
         });
     }
