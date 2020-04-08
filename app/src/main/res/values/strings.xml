@@ -4,5 +4,6 @@
     <string name="activate_button_label">Activate</string>
     <string name="deactivate_button_label">Deactivate</string>
     <string name="endpoint_activate">http://192.168.1.142:8000/actions/activate</string>
-    <string name="endpoint_deactivate">http://192.168.1.142/actions/deactivate</string>
+    <string name="endpoint_deactivate">http://192.168.1.142:8000/actions/deactivate</string>
+    <string name="endpoint_status">http://192.168.1.142:8000/status</string>
 </resources>
