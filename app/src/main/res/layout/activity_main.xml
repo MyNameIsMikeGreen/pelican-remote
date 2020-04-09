@@ -7,61 +7,70 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/status_result_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_message"
+        android:text="NOT CONNECTED"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.632"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063" />
+        app:layout_constraintVertical_bias="0.147" />
+
+    <TextView
+        android:id="@+id/status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/status_label"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.147" />
 
     <Button
-        android:id="@+id/activateButton"
+        android:id="@+id/refreshStatusButton"
         android:layout_width="347dp"
         android:layout_height="54dp"
-        android:layout_marginTop="125dp"
-        android:layout_marginBottom="34dp"
-        android:text="@string/activate_button_label"
-        app:layout_constraintBottom_toTopOf="@+id/deactivateButton"
+        android:layout_marginTop="60dp"
+        android:text="@string/refresh_status_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/status_result_label" />
 
     <Button
         android:id="@+id/deactivateButton"
         android:layout_width="347dp"
         android:layout_height="54dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginBottom="400dp"
         android:text="@string/deactivate_button_label"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activateButton" />
+
+    <Button
+        android:id="@+id/activateButton"
+        android:layout_width="347dp"
+        android:layout_height="54dp"
+        android:text="@string/activate_button_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/refreshStatusButton" />
 
     <TextView
         android:id="@+id/resultText"
         android:layout_width="365dp"
         android:layout_height="185dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="64dp"
         android:background="#D3D3D3"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deactivateButton" />
-
-    <Button
-        android:id="@+id/statusButton"
-        android:layout_width="188dp"
-        android:layout_height="46dp"
-        android:text="Status"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="94dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

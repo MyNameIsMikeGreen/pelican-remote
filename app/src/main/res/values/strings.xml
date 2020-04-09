@@ -6,4 +6,6 @@
     <string name="endpoint_activate">http://192.168.1.142:8000/actions/activate</string>
     <string name="endpoint_deactivate">http://192.168.1.142:8000/actions/deactivate</string>
     <string name="endpoint_status">http://192.168.1.142:8000/status</string>
+    <string name="status_label">Status:</string>
+    <string name="refresh_status_label">Refresh Status</string>
 </resources>
