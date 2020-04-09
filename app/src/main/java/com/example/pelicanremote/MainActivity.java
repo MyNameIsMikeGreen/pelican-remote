@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,34 +15,52 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
+    final private int STATUS_POLL_INTERVAL_MILLIS = 2500;
+    final Handler STATUS_HANDLER = new Handler();
+    final Runnable STATUS_UPDATER_RUNNABLE = statusUpdaterRunnable();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setStatusRefreshButtonClickListener();
         setStatusToggleButtonClickListener(R.id.activateButton, getString(R.string.endpoint_activate));
         setStatusToggleButtonClickListener(R.id.deactivateButton, getString(R.string.endpoint_deactivate));
 
     }
 
-    private void setStatusRefreshButtonClickListener() {
-        findViewById(R.id.refreshStatusButton).setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v) {
-                AsyncTask<String, String, String> result = new PelicanRequest().execute(getString(R.string.endpoint_status));
-                try {
-                    String serverResponse = result.get();
-                    printResponse(serverResponse);
-                    JSONObject statusJson = new JSONObject(serverResponse);
-                    String status = statusJson.getString("status");
-                    TextView statusResultLabel = findViewById(R.id.status_result_label);
-                    statusResultLabel.setText(status);
-                } catch (ExecutionException | InterruptedException | JSONException e) {
-                    e.printStackTrace();
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        STATUS_HANDLER.postDelayed(STATUS_UPDATER_RUNNABLE, 0);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        STATUS_HANDLER.removeCallbacks(STATUS_UPDATER_RUNNABLE);
+    }
+
+    private Runnable statusUpdaterRunnable() {
+        return new Runnable() {
+                public void run() {
+                    STATUS_HANDLER.postDelayed(this, STATUS_POLL_INTERVAL_MILLIS);
+                    refreshStatus();
                 }
-            }
-        });
+            };
+    }
+
+    private void refreshStatus() {
+        AsyncTask<String, String, String> result = new PelicanRequest().execute(getString(R.string.endpoint_status));
+        try {
+            String serverResponse = result.get();
+            JSONObject statusJson = new JSONObject(serverResponse);
+            String status = statusJson.getString("status");
+            TextView statusResultLabel = findViewById(R.id.status_result_label);
+            statusResultLabel.setText(status);
+        } catch (ExecutionException | InterruptedException | JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setStatusToggleButtonClickListener(final int buttonId, final String endpoint) {

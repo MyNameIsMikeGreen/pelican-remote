@@ -33,12 +33,13 @@
         app:layout_constraintVertical_bias="0.147" />
 
     <Button
-        android:id="@+id/refreshStatusButton"
+        android:id="@+id/activateButton"
         android:layout_width="347dp"
         android:layout_height="54dp"
         android:layout_marginTop="60dp"
-        android:text="@string/refresh_status_label"
+        android:text="@string/activate_button_label"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/status_result_label" />
 
@@ -48,17 +49,9 @@
         android:layout_height="54dp"
         android:text="@string/deactivate_button_label"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activateButton" />
-
-    <Button
-        android:id="@+id/activateButton"
-        android:layout_width="347dp"
-        android:layout_height="54dp"
-        android:text="@string/activate_button_label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/refreshStatusButton" />
 
     <TextView
         android:id="@+id/resultText"
