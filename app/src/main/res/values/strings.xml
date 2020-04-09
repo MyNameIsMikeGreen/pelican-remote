@@ -8,4 +8,5 @@
     <string name="endpoint_status">http://192.168.1.142:8000/status</string>
     <string name="status_label">Status:</string>
     <string name="refresh_status_label">Refresh Status</string>
+    <string name="status_not_connected">NOT CONNECTED</string>
 </resources>

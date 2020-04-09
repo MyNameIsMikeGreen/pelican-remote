@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
-    final private int STATUS_POLL_INTERVAL_MILLIS = 2500;
+    final private int STATUS_POLL_INTERVAL_MILLIS = 3000;
     final Handler STATUS_HANDLER = new Handler();
     final Runnable STATUS_UPDATER_RUNNABLE = statusUpdaterRunnable();
 
@@ -52,14 +52,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void refreshStatus() {
         AsyncTask<String, String, String> result = new PelicanRequest().execute(getString(R.string.endpoint_status));
+        TextView statusResultLabel = findViewById(R.id.status_result_label);
         try {
             String serverResponse = result.get();
             JSONObject statusJson = new JSONObject(serverResponse);
             String status = statusJson.getString("status");
-            TextView statusResultLabel = findViewById(R.id.status_result_label);
             statusResultLabel.setText(status);
         } catch (ExecutionException | InterruptedException | JSONException e) {
             e.printStackTrace();
+            statusResultLabel.setText(getString(R.string.status_not_connected));
         }
     }
 
