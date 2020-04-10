@@ -2,9 +2,11 @@ package com.example.pelicanremote;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        makeResponseBoxScrollable();
 
         setStatusToggleButtonClickListener(R.id.activateButton, getString(R.string.endpoint_activate));
         setStatusToggleButtonClickListener(R.id.deactivateButton, getString(R.string.endpoint_deactivate));
@@ -55,12 +59,18 @@ public class MainActivity extends AppCompatActivity {
         TextView statusResultLabel = findViewById(R.id.status_result_label);
         try {
             String serverResponse = result.get();
-            JSONObject statusJson = new JSONObject(serverResponse);
-            String status = statusJson.getString("status");
+            String status = new JSONObject(serverResponse).getString("status");
             statusResultLabel.setText(status);
+            if (status.equals("ACTIVATED")){
+                statusResultLabel.setTextColor(Color.GREEN);
+            }
+            else {
+                statusResultLabel.setTextColor(Color.RED);
+            }
         } catch (ExecutionException | InterruptedException | JSONException e) {
             e.printStackTrace();
             statusResultLabel.setText(getString(R.string.status_not_connected));
+            statusResultLabel.setTextColor(Color.GRAY);
         }
     }
 
@@ -81,8 +91,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void printResponse(String response) throws JSONException {
         JSONObject statusJson = new JSONObject(response);
-        TextView resultBox = findViewById(R.id.resultText);
+        TextView resultBox = findViewById(R.id.responseBox);
         resultBox.setText(statusJson.toString(4));
+    }
+
+    private void makeResponseBoxScrollable() {
+        TextView resultText = findViewById(R.id.responseBox);
+        resultText.setMovementMethod(new ScrollingMovementMethod());
     }
 
 }
