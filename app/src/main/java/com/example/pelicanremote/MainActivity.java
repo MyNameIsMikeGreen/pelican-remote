@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             String serverResponse = result.get();
             String status = new JSONObject(serverResponse).getString("status");
             statusResultLabel.setText(status);
+            findViewById(R.id.activateButton).setEnabled(true);
+            findViewById(R.id.deactivateButton).setEnabled(true);
             if (status.equals("ACTIVATED")){
                 statusResultLabel.setTextColor(Color.GREEN);
             }
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             statusResultLabel.setText(getString(R.string.status_not_connected));
             statusResultLabel.setTextColor(Color.GRAY);
+            findViewById(R.id.activateButton).setEnabled(false);
+            findViewById(R.id.deactivateButton).setEnabled(false);
         }
     }
 
