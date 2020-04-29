@@ -15,11 +15,15 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
+import static com.example.pelicanremote.PelicanUrlBuilder.Endpoint;
+
 public class MainActivity extends AppCompatActivity {
 
-    final private int STATUS_POLL_INTERVAL_MILLIS = 3000;
-    final Handler STATUS_HANDLER = new Handler();
-    final Runnable STATUS_UPDATER_RUNNABLE = statusUpdaterRunnable();
+    private final static int STATUS_POLL_INTERVAL_MILLIS = 3000;
+
+    private final PelicanUrlBuilder urlBuilder = new PelicanUrlBuilder("http", "192.168.5.80", 8000);
+    private final Handler statusHandler = new Handler();
+    private final Runnable statusUpdaterRunnable = statusUpdaterRunnable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,34 +32,34 @@ public class MainActivity extends AppCompatActivity {
 
         makeResponseBoxScrollable();
 
-        setStatusToggleButtonClickListener(R.id.activateButton, getString(R.string.endpoint_activate));
-        setStatusToggleButtonClickListener(R.id.deactivateButton, getString(R.string.endpoint_deactivate));
+        setStatusToggleButtonClickListener(R.id.activateButton, urlBuilder.build(Endpoint.ACTIVATE));
+        setStatusToggleButtonClickListener(R.id.deactivateButton, urlBuilder.build(Endpoint.DEACTIVE));
 
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        STATUS_HANDLER.postDelayed(STATUS_UPDATER_RUNNABLE, 0);
+        statusHandler.postDelayed(statusUpdaterRunnable, 0);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        STATUS_HANDLER.removeCallbacks(STATUS_UPDATER_RUNNABLE);
+        statusHandler.removeCallbacks(statusUpdaterRunnable);
     }
 
     private Runnable statusUpdaterRunnable() {
         return new Runnable() {
                 public void run() {
-                    STATUS_HANDLER.postDelayed(this, STATUS_POLL_INTERVAL_MILLIS);
+                    statusHandler.postDelayed(this, STATUS_POLL_INTERVAL_MILLIS);
                     refreshStatus();
                 }
             };
     }
 
     private void refreshStatus() {
-        AsyncTask<String, String, String> result = new PelicanRequest().execute(getString(R.string.endpoint_status));
+        AsyncTask<String, String, String> result = new PelicanRequest().execute(urlBuilder.build(Endpoint.STATUS));
         TextView statusResultLabel = findViewById(R.id.status_result_label);
         try {
             String serverResponse = result.get();

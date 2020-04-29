@@ -1,11 +1,7 @@
 <resources>
     <string name="app_name">Pelican Remote</string>
-    <string name="welcome_message">Welcome to Pelican!</string>
     <string name="activate_button_label">Activate</string>
     <string name="deactivate_button_label">Deactivate</string>
-    <string name="endpoint_activate">http://192.168.1.142:8000/actions/activate</string>
-    <string name="endpoint_deactivate">http://192.168.1.142:8000/actions/deactivate</string>
-    <string name="endpoint_status">http://192.168.1.142:8000/status</string>
     <string name="status_label">Status:</string>
     <string name="refresh_status_label">Refresh Status</string>
     <string name="status_not_connected">NOT CONNECTED</string>
