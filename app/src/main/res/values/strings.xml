@@ -5,4 +5,7 @@
     <string name="status_label">Status:</string>
     <string name="refresh_status_label">Refresh Status</string>
     <string name="status_not_connected">NOT CONNECTED</string>
+    <string name="last_changed_by_label">Last Changed By:</string>
+    <string name="last_changed_label">Last Changed:</string>
+    <string name="last_change_not_found">N/A</string>
 </resources>

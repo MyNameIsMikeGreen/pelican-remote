@@ -34,37 +34,21 @@
         android:id="@+id/activateButton"
         android:layout_width="347dp"
         android:layout_height="54dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="88dp"
         android:text="@string/activate_button_label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status_result_label" />
+        app:layout_constraintTop_toBottomOf="@+id/last_change_label2" />
 
     <Button
         android:id="@+id/deactivateButton"
         android:layout_width="347dp"
         android:layout_height="54dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:text="@string/deactivate_button_label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activateButton" />
-
-    <TextView
-        android:id="@+id/responseBox"
-        android:layout_width="347dp"
-        android:layout_height="185dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="24dp"
-        android:background="#D8D8D8"
-        android:scrollbars = "vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deactivateButton" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
@@ -78,5 +62,46 @@
         android:id="@+id/group2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/last_change_result_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="LAST CHANGE"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/last_change_label"
+        app:layout_constraintTop_toTopOf="@+id/last_change_label" />
+
+    <TextView
+        android:id="@+id/last_change_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/last_changed_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_result_label" />
+
+    <TextView
+        android:id="@+id/last_change_by_result_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="LAST CHANGED BY"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/last_change_label2"
+        app:layout_constraintStart_toStartOf="@+id/last_change_result_label"
+        app:layout_constraintTop_toBottomOf="@+id/last_change_result_label"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/last_change_label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/last_changed_by_label"
+        app:layout_constraintStart_toStartOf="@+id/last_change_label"
+        app:layout_constraintTop_toBottomOf="@+id/last_change_label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
