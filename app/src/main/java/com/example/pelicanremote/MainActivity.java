@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.activateButton).setEnabled(false);
             findViewById(R.id.deactivateButton).setEnabled(true);
         }
-        if (status.equals("DEACTIVATED")){
+        else if (status.equals("DEACTIVATED")){
             findViewById(R.id.activateButton).setEnabled(true);
             findViewById(R.id.deactivateButton).setEnabled(false);
         }
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         String lastChange = serverResponseJson.getString("lastChange");
         DateTimeFormatter incomingFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.n");
         LocalDateTime dateTime = LocalDateTime.parse(lastChange, incomingFormat);
-        DateTimeFormatter outgoingFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd @ HH:mm:ss");
+        DateTimeFormatter outgoingFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd\nHH:mm:ss");
         TextView lastChangeResultLabel = findViewById(R.id.last_change_result_label);
         lastChangeResultLabel.setText(dateTime.format(outgoingFormat));
     }

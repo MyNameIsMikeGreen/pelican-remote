@@ -34,19 +34,19 @@
         android:id="@+id/activateButton"
         android:layout_width="347dp"
         android:layout_height="54dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="84dp"
         android:text="@string/activate_button_label"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/last_change_label2" />
+        app:layout_constraintTop_toBottomOf="@+id/last_change_label" />
 
     <Button
         android:id="@+id/deactivateButton"
         android:layout_width="347dp"
         android:layout_height="54dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:text="@string/deactivate_button_label"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activateButton" />
 
@@ -67,21 +67,22 @@
         android:id="@+id/last_change_result_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="48dp"
         android:text="LAST CHANGE"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/last_change_label"
         app:layout_constraintStart_toEndOf="@+id/last_change_label"
-        app:layout_constraintTop_toTopOf="@+id/last_change_label" />
+        app:layout_constraintTop_toTopOf="@+id/last_change_label"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/last_change_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/last_changed_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status_result_label" />
+        app:layout_constraintStart_toStartOf="@+id/last_change_label2"
+        app:layout_constraintTop_toBottomOf="@+id/last_change_label2" />
 
     <TextView
         android:id="@+id/last_change_by_result_label"
@@ -92,16 +93,22 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/last_change_label2"
         app:layout_constraintStart_toStartOf="@+id/last_change_result_label"
-        app:layout_constraintTop_toBottomOf="@+id/last_change_result_label"
+        app:layout_constraintTop_toTopOf="@+id/last_change_label2"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/last_change_label2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="36dp"
         android:text="@string/last_changed_by_label"
-        app:layout_constraintStart_toStartOf="@+id/last_change_label"
-        app:layout_constraintTop_toBottomOf="@+id/last_change_label" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_result_label" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
