@@ -1,34 +1,34 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory app:title="Server">
 
         <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+            app:key="protocol"
+            app:title="Protocol"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="http" />
 
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:key="address"
+            app:title="Address"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="192.168.5.80" />
+
+        <EditTextPreference
+            app:key="port"
+            app:title="Port"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="8000" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
+    <PreferenceCategory app:title="Requests">
 
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
+        <EditTextPreference
+            app:key="deactivation_timeout"
+            app:title="Automatic Deactivator Timeout (Seconds)"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="21600"/>
 
     </PreferenceCategory>
 

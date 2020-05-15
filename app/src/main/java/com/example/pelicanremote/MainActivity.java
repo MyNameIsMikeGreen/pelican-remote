@@ -2,8 +2,10 @@ package com.example.pelicanremote;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
     private final PelicanUrlBuilder urlBuilder = new PelicanUrlBuilder("http", "192.168.5.80", 8000);
     private final Handler statusHandler = new Handler();
     private final Runnable statusUpdaterRunnable = statusUpdaterRunnable();
+    private SharedPreferences settings = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.settings = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
+        refreshUrlBuilder();
         statusHandler.postDelayed(statusUpdaterRunnable, 0);
     }
 
@@ -73,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         statusHandler.removeCallbacks(statusUpdaterRunnable);
+    }
+
+    private void refreshUrlBuilder() {
+        urlBuilder.setServerProtocol(settings.getString("protocol", "http"));
+        urlBuilder.setServerAddress(settings.getString("address", "192.168.5.80"));
+        urlBuilder.setServerPort(settings.getString("port", "8000"));
     }
 
     private Runnable statusUpdaterRunnable() {

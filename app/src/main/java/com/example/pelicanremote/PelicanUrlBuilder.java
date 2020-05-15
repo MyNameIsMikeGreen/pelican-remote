@@ -39,6 +39,22 @@ public class PelicanUrlBuilder {
         }
     }
 
+    public void setServerProtocol(String serverProtocol) {
+        this.serverProtocol = serverProtocol;
+    }
+
+    public void setServerAddress(String serverAddress) {
+        this.serverAddress = serverAddress;
+    }
+
+    public void setServerPort(int serverPort) {
+        this.serverPort = serverPort;
+    }
+
+    public void setServerPort(String serverPort) {
+        setServerPort(Integer.parseInt(serverPort));
+    }
+
     private String buildUrl(String endpoint){
         return this.serverProtocol + "://" + this.serverAddress + ":" + this.serverPort + endpoint;
     }
