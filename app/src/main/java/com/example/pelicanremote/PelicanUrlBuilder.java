@@ -14,14 +14,14 @@ public class PelicanUrlBuilder {
 
     private String serverProtocol;
     private String serverAddress;
-    private int serverPort;
-    private int automaticDeactivationTimeoutSeconds;
+    private String serverPort;
+    private String automaticDeactivationTimeoutSeconds;
 
-    public PelicanUrlBuilder(String serverProtocol, String serverAddress, int serverPort){
+    public PelicanUrlBuilder(String serverProtocol, String serverAddress, String serverPort){
         this.serverProtocol = serverProtocol;
         this.serverAddress = serverAddress;
         this.serverPort = serverPort;
-        this.automaticDeactivationTimeoutSeconds = 21600;
+        this.automaticDeactivationTimeoutSeconds = "21600";
     }
 
     public String build(Endpoint endpoint){
@@ -50,20 +50,12 @@ public class PelicanUrlBuilder {
         this.serverAddress = serverAddress;
     }
 
-    public void setServerPort(int serverPort) {
+    public void setServerPort(String serverPort) {
         this.serverPort = serverPort;
     }
 
-    public void setServerPort(String serverPort) {
-        setServerPort(Integer.parseInt(serverPort));
-    }
-
-    public void setAutomaticDeactivationTimeoutSeconds(int automaticDeactivationTimeoutSeconds) {
-        this.automaticDeactivationTimeoutSeconds = automaticDeactivationTimeoutSeconds;
-    }
-
     public void setAutomaticDeactivationTimeoutSeconds(String automaticDeactivationTimeoutSeconds) {
-        setAutomaticDeactivationTimeoutSeconds(Integer.parseInt(automaticDeactivationTimeoutSeconds));
+        this.automaticDeactivationTimeoutSeconds = automaticDeactivationTimeoutSeconds;
     }
 
     private String buildBaseUrl(String endpoint){

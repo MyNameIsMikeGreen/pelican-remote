@@ -26,7 +26,6 @@ import static com.example.pelicanremote.PelicanUrlBuilder.Endpoint;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final static int STATUS_POLL_INTERVAL_MILLIS = 3000;
     public static final String ACTIVATED = "ACTIVATED";
     public static final String DEACTIVATED = "DEACTIVATED";
     public static final String MODIFYING = "MODIFYING";
@@ -34,14 +33,19 @@ public class MainActivity extends AppCompatActivity {
     public static final String LAST_CHANGE = "lastChange";
     public static final String LAST_CHANGE_BY = "lastChangeBy";
 
-    private final PelicanUrlBuilder urlBuilder = new PelicanUrlBuilder("http", "192.168.5.80", 8000);
     private final Handler statusHandler = new Handler();
     private final Runnable statusUpdaterRunnable = statusUpdaterRunnable();
+    private PelicanUrlBuilder urlBuilder = null;
     private SharedPreferences settings = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.urlBuilder = new PelicanUrlBuilder(
+                getString(R.string.default_protocol),
+                getString(R.string.default_address),
+                getString(R.string.default_port)
+        );
         this.settings = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = findViewById(R.id.toolbar);
@@ -81,16 +85,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshUrlBuilder() {
-        urlBuilder.setServerProtocol(settings.getString("protocol", "http"));
-        urlBuilder.setServerAddress(settings.getString("address", "192.168.5.80"));
-        urlBuilder.setServerPort(settings.getString("port", "8000"));
-        urlBuilder.setAutomaticDeactivationTimeoutSeconds(settings.getString("deactivation_timeout", "21600"));
+        urlBuilder.setServerProtocol(settings.getString("protocol", getString(R.string.default_protocol)));
+        urlBuilder.setServerAddress(settings.getString("address", getString(R.string.default_address)));
+        urlBuilder.setServerPort(settings.getString("port", getString(R.string.default_port)));
+        urlBuilder.setAutomaticDeactivationTimeoutSeconds(settings.getString("deactivation_timeout", getString(R.string.default_deactivation_timeout)));
     }
 
     private Runnable statusUpdaterRunnable() {
         return new Runnable() {
                 public void run() {
-                    statusHandler.postDelayed(this, STATUS_POLL_INTERVAL_MILLIS);
+                    statusHandler.postDelayed(this, Integer.parseInt(settings.getString(
+                            "statusPollIntervalMillis",
+                            getString(R.string.default_status_poll_interval_millis))
+                    ));
                     refreshStatus();
                 }
             };

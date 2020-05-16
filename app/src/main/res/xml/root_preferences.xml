@@ -6,19 +6,19 @@
             app:key="protocol"
             app:title="Protocol"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="http" />
+            app:defaultValue="@string/default_protocol" />
 
         <EditTextPreference
             app:key="address"
             app:title="Address"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="192.168.5.80" />
+            app:defaultValue="@string/default_address" />
 
         <EditTextPreference
             app:key="port"
             app:title="Port"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="8000" />
+            app:defaultValue="@string/default_port" />
 
     </PreferenceCategory>
 
@@ -28,7 +28,13 @@
             app:key="deactivation_timeout"
             app:title="Automatic Deactivator Timeout (Seconds)"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="21600"/>
+            app:defaultValue="@string/default_deactivation_timeout"/>
+
+        <EditTextPreference
+            app:key="default_status_poll_interval_millis"
+            app:title="Status Poll Interval (Milliseconds)"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="@string/default_status_poll_interval_millis"/>
 
     </PreferenceCategory>
 
