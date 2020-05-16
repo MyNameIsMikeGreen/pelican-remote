@@ -97,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshStatus() {
-        AsyncTask<String, String, String> result = new PelicanRequest().execute(urlBuilder.build(Endpoint.STATUS));
+        AsyncTask<String, String, String> result = new PelicanRequest().executeOnExecutor(
+                AsyncTask.THREAD_POOL_EXECUTOR, urlBuilder.build(Endpoint.STATUS)
+        );
 
         try {
             String serverResponse = result.get();
