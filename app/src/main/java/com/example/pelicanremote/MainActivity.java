@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        setStatusToggleButtonClickListener(R.id.activateButton, urlBuilder.build(Endpoint.ACTIVATE));
         setStatusToggleButtonClickListener(R.id.deactivateButton, urlBuilder.build(Endpoint.DEACTIVE));
     }
 
@@ -72,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPostResume();
         refreshUrlBuilder();
         statusHandler.postDelayed(statusUpdaterRunnable, 0);
+        setStatusToggleButtonClickListener(R.id.activateButton, urlBuilder.build(Endpoint.ACTIVATE));
     }
 
     @Override
@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         urlBuilder.setServerProtocol(settings.getString("protocol", "http"));
         urlBuilder.setServerAddress(settings.getString("address", "192.168.5.80"));
         urlBuilder.setServerPort(settings.getString("port", "8000"));
+        urlBuilder.setAutomaticDeactivationTimeoutSeconds(settings.getString("deactivation_timeout", "21600"));
     }
 
     private Runnable statusUpdaterRunnable() {
