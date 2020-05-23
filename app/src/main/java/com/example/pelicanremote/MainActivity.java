@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String STATUS = "status";
     public static final String LAST_CHANGE = "lastChange";
     public static final String LAST_CHANGE_BY = "lastChangeBy";
+    public static final String SCHEDULED_DEACTIVATION = "scheduledDeactivation";
 
     private final Handler statusHandler = new Handler();
     private final Runnable statusUpdaterRunnable = statusUpdaterRunnable();
@@ -127,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
         lastChangeResultLabel.setText(R.string.last_change_not_found);
         TextView lastChangeByResultLabel = findViewById(R.id.last_change_by_result_label);
         lastChangeByResultLabel.setText(R.string.last_change_not_found);
+        TextView deactivationTimeResultLabel = findViewById(R.id.deactivation_time_result_label);
+        deactivationTimeResultLabel.setText(R.string.last_change_not_found);
     }
 
     private void populateStatusLabels(String serverResponse) throws JSONException {
@@ -134,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         setStatusLabelText(serverResponseJson);
         setLastChangeLabelText(serverResponseJson);
         setLastChangeByLabelText(serverResponseJson);
+        setDeactivationTimeLabelText(serverResponseJson);
         disableAppropriateActionButton(serverResponseJson);
     }
 
@@ -193,6 +197,15 @@ public class MainActivity extends AppCompatActivity {
         String lastChangeBy = serverResponseJson.getString(LAST_CHANGE_BY);
         TextView lastChangeByResultLabel = findViewById(R.id.last_change_by_result_label);
         lastChangeByResultLabel.setText(lastChangeBy);
+    }
+
+    private void setDeactivationTimeLabelText(JSONObject serverResponseJson) throws JSONException {
+        String deactivationTime = serverResponseJson.getString(SCHEDULED_DEACTIVATION);
+        DateTimeFormatter incomingFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(deactivationTime, incomingFormat);
+        DateTimeFormatter outgoingFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd\nHH:mm:ss");
+        TextView lastChangeByResultLabel = findViewById(R.id.deactivation_time_result_label);
+        lastChangeByResultLabel.setText(dateTime.format(outgoingFormat));
     }
 
     private void setStatusToggleButtonClickListener(final int buttonId, final String endpoint) {
