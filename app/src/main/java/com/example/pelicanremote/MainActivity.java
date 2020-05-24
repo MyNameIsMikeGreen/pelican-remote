@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.pelicanremote.PelicanUrlBuilder.Endpoint;
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         TextView lastChangeResultLabel = findViewById(R.id.last_change_result_label);
         lastChangeResultLabel.setText(R.string.last_change_not_found);
         TextView lastChangeByResultLabel = findViewById(R.id.last_change_by_result_label);
-        lastChangeByResultLabel.setText(R.string.last_change_not_found);
+        lastChangeByResultLabel.setText(R.string.last_change_by_not_found);
         TextView deactivationTimeResultLabel = findViewById(R.id.deactivation_time_result_label);
         deactivationTimeResultLabel.setText(R.string.last_change_not_found);
     }
@@ -185,27 +186,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setLastChangeLabelText(JSONObject serverResponseJson) throws JSONException {
-        String lastChange = serverResponseJson.getString(LAST_CHANGE);
-        DateTimeFormatter incomingFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.n");
-        LocalDateTime dateTime = LocalDateTime.parse(lastChange, incomingFormat);
+        extractAndSetDateLabel(R.id.last_change_result_label, serverResponseJson, LAST_CHANGE,
+                "yyyy-MM-dd HH:mm:ss.n", getString(R.string.last_change_not_found));
+    }
+
+    private void extractAndSetDateLabel(int labelId, JSONObject serverResponseJson, String key,
+                                        String incomingFormat, String defaultValue) throws JSONException {
+        String result = defaultValue;
+        String lastChange = serverResponseJson.getString(key);
+        try {
+            result = normaliseDateFormat(lastChange, incomingFormat);
+        }
+        catch(DateTimeParseException ignored) {}
+        TextView lastChangeResultLabel = findViewById(labelId);
+        lastChangeResultLabel.setText(result);
+    }
+
+    private void setDeactivationTimeLabelText(JSONObject serverResponseJson) throws JSONException {
+        extractAndSetDateLabel(R.id.deactivation_time_result_label, serverResponseJson,
+                SCHEDULED_DEACTIVATION, "yyyy-MM-dd HH:mm:ss", getString(R.string.deactivation_time_not_found));
+    }
+
+    private String normaliseDateFormat(String dateString, String incomingFormat){
+        LocalDateTime dateTime = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern(incomingFormat));
         DateTimeFormatter outgoingFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd\nHH:mm:ss");
-        TextView lastChangeResultLabel = findViewById(R.id.last_change_result_label);
-        lastChangeResultLabel.setText(dateTime.format(outgoingFormat));
+        return dateTime.format(outgoingFormat);
     }
 
     private void setLastChangeByLabelText(JSONObject serverResponseJson) throws JSONException {
         String lastChangeBy = serverResponseJson.getString(LAST_CHANGE_BY);
         TextView lastChangeByResultLabel = findViewById(R.id.last_change_by_result_label);
         lastChangeByResultLabel.setText(lastChangeBy);
-    }
-
-    private void setDeactivationTimeLabelText(JSONObject serverResponseJson) throws JSONException {
-        String deactivationTime = serverResponseJson.getString(SCHEDULED_DEACTIVATION);
-        DateTimeFormatter incomingFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateTime = LocalDateTime.parse(deactivationTime, incomingFormat);
-        DateTimeFormatter outgoingFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd\nHH:mm:ss");
-        TextView lastChangeByResultLabel = findViewById(R.id.deactivation_time_result_label);
-        lastChangeByResultLabel.setText(dateTime.format(outgoingFormat));
     }
 
     private void setStatusToggleButtonClickListener(final int buttonId, final String endpoint) {

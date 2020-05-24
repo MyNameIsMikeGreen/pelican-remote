@@ -8,6 +8,8 @@
     <string name="last_changed_by_label">Last Changed By:</string>
     <string name="last_changed_label">Last Changed:</string>
     <string name="last_change_not_found">N/A</string>
+    <string name="last_change_by_not_found">N/A</string>
+    <string name="deactivation_time_not_found">N/A</string>
     <string name="title_activity_settings">Settings</string>
     <string name="deactivation_time_label">Deactivation</string>
 
