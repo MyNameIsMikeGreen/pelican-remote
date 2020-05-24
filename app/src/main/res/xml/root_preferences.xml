@@ -31,7 +31,7 @@
             app:defaultValue="@string/default_deactivation_timeout_hours"/>
 
         <EditTextPreference
-            app:key="default_status_poll_interval_seconds"
+            app:key="poll_interval_seconds"
             app:title="Status Poll Interval (Seconds)"
             app:useSimpleSummaryProvider="true"
             app:defaultValue="@string/default_status_poll_interval_seconds"/>

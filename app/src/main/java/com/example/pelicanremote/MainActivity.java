@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final Handler statusHandler = new Handler();
     private final Runnable statusUpdaterRunnable = statusUpdaterRunnable();
+
     private PelicanUrlBuilder urlBuilder = null;
     private SharedPreferences settings = null;
 
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     statusHandler.postDelayed(this, Integer.parseInt(
                             convertSecondsStringToMillis(settings.getString(
-                                "statusPollIntervalSeconds",
+                                "poll_interval_seconds",
                                 getString(R.string.default_status_poll_interval_seconds))
                             )
                     ));
