@@ -54,7 +54,7 @@ public class PelicanUrlBuilder {
         this.serverPort = serverPort;
     }
 
-    public void setAutomaticDeactivationTimeoutSeconds(String automaticDeactivationTimeoutSeconds) {
+    public void setAutomaticDeactivationTimeoutHours(String automaticDeactivationTimeoutSeconds) {
         this.automaticDeactivationTimeoutSeconds = automaticDeactivationTimeoutSeconds;
     }
 

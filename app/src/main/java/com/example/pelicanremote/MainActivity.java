@@ -90,19 +90,31 @@ public class MainActivity extends AppCompatActivity {
         urlBuilder.setServerProtocol(settings.getString("protocol", getString(R.string.default_protocol)));
         urlBuilder.setServerAddress(settings.getString("address", getString(R.string.default_address)));
         urlBuilder.setServerPort(settings.getString("port", getString(R.string.default_port)));
-        urlBuilder.setAutomaticDeactivationTimeoutSeconds(settings.getString("deactivation_timeout", getString(R.string.default_deactivation_timeout)));
+        urlBuilder.setAutomaticDeactivationTimeoutHours(convertHoursStringToHours(
+                settings.getString("deactivation_timeout", getString(R.string.default_deactivation_timeout_hours)))
+        );
+    }
+
+    private String convertHoursStringToHours(String hoursString) {
+        return String.valueOf(Integer.parseInt(hoursString) * 3600);
     }
 
     private Runnable statusUpdaterRunnable() {
         return new Runnable() {
                 public void run() {
-                    statusHandler.postDelayed(this, Integer.parseInt(settings.getString(
-                            "statusPollIntervalMillis",
-                            getString(R.string.default_status_poll_interval_millis))
+                    statusHandler.postDelayed(this, Integer.parseInt(
+                            convertSecondsStringToMillis(settings.getString(
+                                "statusPollIntervalSeconds",
+                                getString(R.string.default_status_poll_interval_seconds))
+                            )
                     ));
                     refreshStatus();
                 }
             };
+    }
+
+    private String convertSecondsStringToMillis(String secondsString) {
+        return String.valueOf(Integer.parseInt(secondsString) * 1000);
     }
 
     private void refreshStatus() {

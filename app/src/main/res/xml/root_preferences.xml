@@ -26,15 +26,15 @@
 
         <EditTextPreference
             app:key="deactivation_timeout"
-            app:title="Automatic Deactivator Timeout (Seconds)"
+            app:title="Automatic Deactivator Timeout (Hours)"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="@string/default_deactivation_timeout"/>
+            app:defaultValue="@string/default_deactivation_timeout_hours"/>
 
         <EditTextPreference
-            app:key="default_status_poll_interval_millis"
-            app:title="Status Poll Interval (Milliseconds)"
+            app:key="default_status_poll_interval_seconds"
+            app:title="Status Poll Interval (Seconds)"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="@string/default_status_poll_interval_millis"/>
+            app:defaultValue="@string/default_status_poll_interval_seconds"/>
 
     </PreferenceCategory>
 

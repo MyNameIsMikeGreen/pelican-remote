@@ -20,6 +20,6 @@
     <string name="default_protocol">http</string>
     <string name="default_address">192.168.5.80</string>
     <string name="default_port">8000</string>
-    <string name="default_deactivation_timeout">21600</string>
-    <string name="default_status_poll_interval_millis">1000</string>
+    <string name="default_deactivation_timeout_hours">6</string>
+    <string name="default_status_poll_interval_seconds">1</string>
 </resources>
