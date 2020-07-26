@@ -86,6 +86,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activateButton" />
 
+        <Button
+            android:id="@+id/rescanButton"
+            android:layout_width="347dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="36dp"
+            android:text="@string/rescan_button_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/deactivateButton" />
+
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group"
             android:layout_width="wrap_content"

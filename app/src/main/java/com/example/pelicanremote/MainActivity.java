@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         refreshUrlBuilder();
         statusHandler.postDelayed(statusUpdaterRunnable, 0);
         setStatusToggleButtonClickListener(R.id.activateButton, urlBuilder.build(Endpoint.ACTIVATE));
+        setStatusToggleButtonClickListener(R.id.rescanButton, urlBuilder.build(Endpoint.RESCAN));
     }
 
     @Override
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
         statusResultLabel.setTextColor(Color.GRAY);
         findViewById(R.id.activateButton).setEnabled(false);
         findViewById(R.id.deactivateButton).setEnabled(false);
+        findViewById(R.id.rescanButton).setEnabled(false);
         TextView lastChangeResultLabel = findViewById(R.id.last_change_result_label);
         lastChangeResultLabel.setText(R.string.last_change_not_found);
         TextView lastChangeByResultLabel = findViewById(R.id.last_change_by_result_label);
@@ -161,19 +163,23 @@ public class MainActivity extends AppCompatActivity {
             case ACTIVATED:
                 findViewById(R.id.activateButton).setEnabled(false);
                 findViewById(R.id.deactivateButton).setEnabled(true);
+                findViewById(R.id.rescanButton).setEnabled(true);
                 break;
             case DEACTIVATED:
                 findViewById(R.id.activateButton).setEnabled(true);
                 findViewById(R.id.deactivateButton).setEnabled(false);
+                findViewById(R.id.rescanButton).setEnabled(false);
                 break;
             case MODIFYING:
                 findViewById(R.id.activateButton).setEnabled(false);
                 findViewById(R.id.deactivateButton).setEnabled(false);
+                findViewById(R.id.rescanButton).setEnabled(false);
                 break;
             default:
                 // Enable both buttons so that actions can be performed as a backup
                 findViewById(R.id.activateButton).setEnabled(true);
                 findViewById(R.id.deactivateButton).setEnabled(true);
+                findViewById(R.id.rescanButton).setEnabled(true);
                 break;
         }
     }

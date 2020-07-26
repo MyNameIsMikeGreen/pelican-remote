@@ -22,4 +22,5 @@
     <string name="default_port">8000</string>
     <string name="default_deactivation_timeout_hours">6</string>
     <string name="default_status_poll_interval_seconds">1</string>
+    <string name="rescan_button_label">Rescan</string>
 </resources>
