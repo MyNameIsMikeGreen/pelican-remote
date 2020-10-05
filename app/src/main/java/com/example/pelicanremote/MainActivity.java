@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        setStatusToggleButtonClickListener(R.id.deactivateButton, urlBuilder.build(Endpoint.DEACTIVE));
     }
 
     @Override
@@ -79,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         refreshUrlBuilder();
         statusHandler.postDelayed(statusUpdaterRunnable, 0);
         setStatusToggleButtonClickListener(R.id.activateButton, urlBuilder.build(Endpoint.ACTIVATE));
+        setStatusToggleButtonClickListener(R.id.deactivateButton, urlBuilder.build(Endpoint.DEACTIVE));
         setStatusToggleButtonClickListener(R.id.rescanButton, urlBuilder.build(Endpoint.RESCAN));
     }
 
