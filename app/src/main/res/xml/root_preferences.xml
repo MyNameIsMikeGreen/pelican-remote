@@ -1,41 +1,45 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="Server">
+    <com.takisoft.preferencex.PreferenceCategory app:title="Server">
 
-        <EditTextPreference
+        <com.takisoft.preferencex.EditTextPreference
             app:key="protocol"
             app:title="Protocol"
             app:useSimpleSummaryProvider="true"
             app:defaultValue="@string/default_protocol" />
 
-        <EditTextPreference
+        <com.takisoft.preferencex.EditTextPreference
             app:key="address"
             app:title="Address"
             app:useSimpleSummaryProvider="true"
             app:defaultValue="@string/default_address" />
 
-        <EditTextPreference
+        <com.takisoft.preferencex.EditTextPreference
             app:key="port"
             app:title="Port"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="@string/default_port" />
+            app:defaultValue="@string/default_port"
+            android:inputType="number" />
 
-    </PreferenceCategory>
+    </com.takisoft.preferencex.PreferenceCategory>
 
-    <PreferenceCategory app:title="Requests">
+    <com.takisoft.preferencex.PreferenceCategory app:title="Requests">
 
-        <EditTextPreference
+        <com.takisoft.preferencex.EditTextPreference
             app:key="deactivation_timeout"
             app:title="Automatic Deactivator Timeout (Hours)"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="@string/default_deactivation_timeout_hours"/>
+            app:defaultValue="@string/default_deactivation_timeout_hours"
+            android:inputType="number" />
 
-        <EditTextPreference
+        <com.takisoft.preferencex.EditTextPreference
             app:key="poll_interval_seconds"
             app:title="Status Poll Interval (Seconds)"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="@string/default_status_poll_interval_seconds"/>
+            app:defaultValue="@string/default_status_poll_interval_seconds"
+            android:inputType="number" />
 
-    </PreferenceCategory>
+    </com.takisoft.preferencex.PreferenceCategory>
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>
