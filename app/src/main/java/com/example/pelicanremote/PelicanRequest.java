@@ -23,7 +23,6 @@ class PelicanRequest extends AsyncTask<String, String, String> {
             url = new URL(params[0]);
 
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setConnectTimeout(3000);
             InputStream in = urlConnection.getInputStream();
             InputStreamReader isw = new InputStreamReader(in);
 
