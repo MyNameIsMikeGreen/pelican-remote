@@ -1,5 +1,8 @@
 package com.example.pelicanremote;
 
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+
 public class PelicanUrlBuilder {
 
     private static final String ACTIVATION_ENDPOINT = "/actions/activate";
@@ -9,6 +12,7 @@ public class PelicanUrlBuilder {
 
     public enum Endpoint{
         ACTIVATE,
+        ACTIVATE_UNTIL_MIDNIGHT,
         DEACTIVE,
         STATUS,
         RESCAN
@@ -32,6 +36,10 @@ public class PelicanUrlBuilder {
             case ACTIVATE:
                 return buildBaseUrl(ACTIVATION_ENDPOINT)
                         + "?timeout_seconds=" + this.automaticDeactivationTimeoutSeconds;
+
+            case ACTIVATE_UNTIL_MIDNIGHT:
+                return buildBaseUrl(ACTIVATION_ENDPOINT)
+                        + "?timeout_seconds=" + secondsUntilMidnight();
 
             case DEACTIVE:
                 return buildBaseUrl(DEACTIVATION_ENDPOINT);
@@ -60,12 +68,16 @@ public class PelicanUrlBuilder {
         this.serverPort = serverPort;
     }
 
-    public void setAutomaticDeactivationTimeoutHours(String automaticDeactivationTimeoutSeconds) {
+    public void setAutomaticDeactivationTimeoutSeconds(String automaticDeactivationTimeoutSeconds) {
         this.automaticDeactivationTimeoutSeconds = automaticDeactivationTimeoutSeconds;
     }
 
     private String buildBaseUrl(String endpoint){
         return this.serverProtocol + "://" + this.serverAddress + ":" + this.serverPort + endpoint;
+    }
+
+    private int secondsUntilMidnight(){
+        return (int) LocalTime.now().until(LocalTime.of(23, 59, 59), ChronoUnit.SECONDS);
     }
 
 }

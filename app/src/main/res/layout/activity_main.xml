@@ -41,7 +41,6 @@
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-
         <TextView
             android:id="@+id/status_result_label"
             android:layout_width="wrap_content"
@@ -77,20 +76,30 @@
             app:layout_constraintTop_toBottomOf="@+id/last_change_label" />
 
         <Button
-            android:id="@+id/deactivateButton"
+            android:id="@+id/activateUntilMidnightButton"
             android:layout_width="347dp"
             android:layout_height="54dp"
-            android:layout_marginTop="36dp"
-            android:text="@string/deactivate_button_label"
+            android:layout_marginTop="28dp"
+            android:text="@string/activate_until_midnight_button_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activateButton" />
 
         <Button
+            android:id="@+id/deactivateButton"
+            android:layout_width="347dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/deactivate_button_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activateUntilMidnightButton" />
+
+        <Button
             android:id="@+id/rescanButton"
             android:layout_width="347dp"
             android:layout_height="54dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="28dp"
             android:text="@string/rescan_button_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

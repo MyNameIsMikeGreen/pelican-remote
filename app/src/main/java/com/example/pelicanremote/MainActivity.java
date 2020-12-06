@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         refreshUrlBuilder();
         statusHandler.postDelayed(statusUpdaterRunnable, 0);
         setStatusToggleButtonClickListener(R.id.activateButton, urlBuilder.build(Endpoint.ACTIVATE));
+        setStatusToggleButtonClickListener(R.id.activateUntilMidnightButton, urlBuilder.build(Endpoint.ACTIVATE_UNTIL_MIDNIGHT));
         setStatusToggleButtonClickListener(R.id.deactivateButton, urlBuilder.build(Endpoint.DEACTIVE));
         setStatusToggleButtonClickListener(R.id.rescanButton, urlBuilder.build(Endpoint.RESCAN));
     }
@@ -92,12 +93,12 @@ public class MainActivity extends AppCompatActivity {
         urlBuilder.setServerProtocol(settings.getString("protocol", getString(R.string.default_protocol)));
         urlBuilder.setServerAddress(settings.getString("address", getString(R.string.default_address)));
         urlBuilder.setServerPort(settings.getString("port", getString(R.string.default_port)));
-        urlBuilder.setAutomaticDeactivationTimeoutHours(convertHoursStringToHours(
+        urlBuilder.setAutomaticDeactivationTimeoutSeconds(convertHoursStringToSeconds(
                 settings.getString("deactivation_timeout", getString(R.string.default_deactivation_timeout_hours)))
         );
     }
 
-    private String convertHoursStringToHours(String hoursString) {
+    private String convertHoursStringToSeconds(String hoursString) {
         return String.valueOf(Integer.parseInt(hoursString) * 3600);
     }
 
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
         statusResultLabel.setText(getString(R.string.status_not_connected));
         statusResultLabel.setTextColor(Color.GRAY);
         findViewById(R.id.activateButton).setEnabled(false);
+        findViewById(R.id.activateUntilMidnightButton).setEnabled(false);
         findViewById(R.id.deactivateButton).setEnabled(false);
         findViewById(R.id.rescanButton).setEnabled(false);
         TextView lastChangeResultLabel = findViewById(R.id.last_change_result_label);
@@ -162,22 +164,26 @@ public class MainActivity extends AppCompatActivity {
         switch (status) {
             case ACTIVATED:
                 findViewById(R.id.activateButton).setEnabled(false);
+                findViewById(R.id.activateUntilMidnightButton).setEnabled(false);
                 findViewById(R.id.deactivateButton).setEnabled(true);
                 findViewById(R.id.rescanButton).setEnabled(true);
                 break;
             case DEACTIVATED:
                 findViewById(R.id.activateButton).setEnabled(true);
+                findViewById(R.id.activateUntilMidnightButton).setEnabled(true);
                 findViewById(R.id.deactivateButton).setEnabled(false);
                 findViewById(R.id.rescanButton).setEnabled(false);
                 break;
             case MODIFYING:
                 findViewById(R.id.activateButton).setEnabled(false);
+                findViewById(R.id.activateUntilMidnightButton).setEnabled(false);
                 findViewById(R.id.deactivateButton).setEnabled(false);
                 findViewById(R.id.rescanButton).setEnabled(false);
                 break;
             default:
                 // Enable both buttons so that actions can be performed as a backup
                 findViewById(R.id.activateButton).setEnabled(true);
+                findViewById(R.id.activateUntilMidnightButton).setEnabled(true);
                 findViewById(R.id.deactivateButton).setEnabled(true);
                 findViewById(R.id.rescanButton).setEnabled(true);
                 break;

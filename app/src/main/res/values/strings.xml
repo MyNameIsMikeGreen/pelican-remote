@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Pelican Remote</string>
     <string name="activate_button_label">Activate</string>
+    <string name="activate_until_midnight_button_label">Activate Until Midnight</string>
     <string name="deactivate_button_label">Deactivate</string>
     <string name="status_label">Status:</string>
     <string name="refresh_status_label">Refresh Status</string>
