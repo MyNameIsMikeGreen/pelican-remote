@@ -9,6 +9,8 @@ import java.net.URL;
 
 class PelicanRequest extends AsyncTask<String, String, String> {
 
+    public static final int TIMEOUT_MS = 500;
+
     /**
      * Hits Pelican with a basic HTTP GET request as the provided endpoint.
      * @param params The endpoint as a string.
@@ -21,8 +23,9 @@ class PelicanRequest extends AsyncTask<String, String, String> {
         StringBuilder result = new StringBuilder();
         try {
             url = new URL(params[0]);
-
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setConnectTimeout(TIMEOUT_MS);
+            urlConnection.setReadTimeout(TIMEOUT_MS);
             InputStream in = urlConnection.getInputStream();
             InputStreamReader isw = new InputStreamReader(in);
 
