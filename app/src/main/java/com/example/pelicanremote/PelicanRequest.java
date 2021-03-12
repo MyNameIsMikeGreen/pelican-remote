@@ -33,7 +33,7 @@ class PelicanRequest extends AsyncTask<String, String, String> {
                 result.append(current);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // TODO: Proper logging
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();

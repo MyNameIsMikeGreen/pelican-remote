@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
             String serverResponse = result.get();
             populateStatusLabels(serverResponse);
         } catch (ExecutionException | InterruptedException | JSONException e) {
-            e.printStackTrace();
             changeElementsToNotConnectedMode();
         }
     }
