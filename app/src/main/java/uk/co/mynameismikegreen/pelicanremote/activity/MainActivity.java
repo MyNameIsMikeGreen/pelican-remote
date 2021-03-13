@@ -1,4 +1,4 @@
-package uk.co.mynameismikegreen.pelicanremote;
+package uk.co.mynameismikegreen.pelicanremote.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,6 +22,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.concurrent.ExecutionException;
+
+import uk.co.mynameismikegreen.pelicanremote.PelicanRequest;
+import uk.co.mynameismikegreen.pelicanremote.PelicanUrlBuilder;
+import uk.co.mynameismikegreen.pelicanremote.R;
 
 import static uk.co.mynameismikegreen.pelicanremote.PelicanUrlBuilder.Endpoint;
 
@@ -121,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshStatus() {
-        AsyncTask<String, String, String> result = new PelicanRequest().executeOnExecutor(
-                AsyncTask.THREAD_POOL_EXECUTOR, urlBuilder.build(Endpoint.STATUS)
+        AsyncTask<String, String, String> result = PelicanRequest.execute(
+                urlBuilder.build(PelicanUrlBuilder.Endpoint.STATUS)
         );
 
         try {

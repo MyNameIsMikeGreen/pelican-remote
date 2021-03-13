@@ -7,9 +7,18 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-class PelicanRequest extends AsyncTask<String, String, String> {
+public class PelicanRequest extends AsyncTask<String, String, String> {
 
     public static final int TIMEOUT_MS = 500;
+
+    /**
+     * Perform a HTTP GET to the URL asynchronously.
+     * @param url URL to fetch.
+     * @return AsyncTask for the HTTP GET action.
+     */
+    public static AsyncTask<String, String, String> execute(String url) {
+        return new PelicanRequest().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, url);
+    }
 
     /**
      * Hits Pelican with a basic HTTP GET request as the provided endpoint.
