@@ -1,4 +1,4 @@
-package com.example.pelicanremote;
+package uk.co.mynameismikegreen.pelicanremote;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;

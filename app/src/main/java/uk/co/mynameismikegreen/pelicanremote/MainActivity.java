@@ -1,4 +1,4 @@
-package com.example.pelicanremote;
+package uk.co.mynameismikegreen.pelicanremote;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,7 +23,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.concurrent.ExecutionException;
 
-import static com.example.pelicanremote.PelicanUrlBuilder.Endpoint;
+import static uk.co.mynameismikegreen.pelicanremote.PelicanUrlBuilder.Endpoint;
 
 public class MainActivity extends AppCompatActivity {
 

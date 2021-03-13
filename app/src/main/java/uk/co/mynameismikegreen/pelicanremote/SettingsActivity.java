@@ -1,4 +1,4 @@
-package com.example.pelicanremote;
+package uk.co.mynameismikegreen.pelicanremote;
 
 import android.os.Bundle;
 
