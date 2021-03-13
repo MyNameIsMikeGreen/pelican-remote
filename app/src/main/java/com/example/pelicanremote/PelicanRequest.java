@@ -44,9 +44,4 @@ class PelicanRequest extends AsyncTask<String, String, String> {
         }
         return result.toString();
     }
-
-    @Override
-    protected void onPostExecute(String result) {
-        System.out.println(result);
-    }
 }
