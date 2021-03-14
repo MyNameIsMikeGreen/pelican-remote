@@ -1,5 +1,6 @@
 package uk.co.mynameismikegreen.pelicanremote;
 
+import java.time.Clock;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
@@ -13,7 +14,7 @@ public class PelicanUrlBuilder {
     public enum Endpoint{
         ACTIVATE,
         ACTIVATE_UNTIL_MIDNIGHT,
-        DEACTIVE,
+        DEACTIVATE,
         STATUS,
         RESCAN
     }
@@ -22,12 +23,14 @@ public class PelicanUrlBuilder {
     private String serverAddress;
     private String serverPort;
     private String automaticDeactivationTimeoutSeconds;
+    private Clock clock;
 
     public PelicanUrlBuilder(String serverProtocol, String serverAddress, String serverPort){
         this.serverProtocol = serverProtocol;
         this.serverAddress = serverAddress;
         this.serverPort = serverPort;
         this.automaticDeactivationTimeoutSeconds = "21600";
+        this.clock = Clock.systemDefaultZone();
     }
 
     public String build(Endpoint endpoint){
@@ -41,7 +44,7 @@ public class PelicanUrlBuilder {
                 return buildBaseUrl(ACTIVATION_ENDPOINT)
                         + "?timeout_seconds=" + secondsUntilMidnight();
 
-            case DEACTIVE:
+            case DEACTIVATE:
                 return buildBaseUrl(DEACTIVATION_ENDPOINT);
 
             case STATUS:
@@ -72,12 +75,16 @@ public class PelicanUrlBuilder {
         this.automaticDeactivationTimeoutSeconds = automaticDeactivationTimeoutSeconds;
     }
 
+    public void setClock(Clock clock) {
+        this.clock = clock;
+    }
+
     private String buildBaseUrl(String endpoint){
         return this.serverProtocol + "://" + this.serverAddress + ":" + this.serverPort + endpoint;
     }
 
     private int secondsUntilMidnight(){
-        return (int) LocalTime.now().until(LocalTime.of(23, 59, 59), ChronoUnit.SECONDS);
+        return (int) LocalTime.now(this.clock).until(LocalTime.of(23, 59, 59), ChronoUnit.SECONDS);
     }
 
 }

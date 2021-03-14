@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         statusHandler.postDelayed(statusUpdaterRunnable, 0);
         setStatusToggleButtonClickListener(R.id.activateButton, urlBuilder.build(Endpoint.ACTIVATE));
         setStatusToggleButtonClickListener(R.id.activateUntilMidnightButton, urlBuilder.build(Endpoint.ACTIVATE_UNTIL_MIDNIGHT));
-        setStatusToggleButtonClickListener(R.id.deactivateButton, urlBuilder.build(Endpoint.DEACTIVE));
+        setStatusToggleButtonClickListener(R.id.deactivateButton, urlBuilder.build(Endpoint.DEACTIVATE));
         setStatusToggleButtonClickListener(R.id.rescanButton, urlBuilder.build(Endpoint.RESCAN));
     }
 

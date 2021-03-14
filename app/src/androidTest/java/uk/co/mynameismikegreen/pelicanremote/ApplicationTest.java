@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class ApplicationTest {
 
     @Test
-    public void useAppContext() {
+    public void packageIsCorrect() {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("uk.co.mynameismikegreen.pelicanremote", appContext.getPackageName());
     }
