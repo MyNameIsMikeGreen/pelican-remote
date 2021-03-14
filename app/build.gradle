@@ -30,6 +30,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.preference:preference:1.1.0'
     implementation 'com.takisoft.preferencex:preferencex:1.1.0'
+    compileOnly 'org.projectlombok:lombok:1.18.18'
+    annotationProcessor 'org.projectlombok:lombok:1.18.18'
     testImplementation 'junit:junit:4.12'
     testImplementation 'com.squareup.okhttp3:mockwebserver:3.6.0'
     testImplementation('pl.pragmatists:JUnitParams:1.0.5')

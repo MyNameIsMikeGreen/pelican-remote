@@ -4,6 +4,9 @@ import java.time.Clock;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
+import lombok.Setter;
+
+@Setter
 public class PelicanUrlBuilder {
 
     private static final String ACTIVATION_ENDPOINT = "/actions/activate";
@@ -57,26 +60,6 @@ public class PelicanUrlBuilder {
             default:
                 return null;
         }
-    }
-
-    public void setServerProtocol(String serverProtocol) {
-        this.serverProtocol = serverProtocol;
-    }
-
-    public void setServerAddress(String serverAddress) {
-        this.serverAddress = serverAddress;
-    }
-
-    public void setServerPort(String serverPort) {
-        this.serverPort = serverPort;
-    }
-
-    public void setAutomaticDeactivationTimeoutSeconds(String automaticDeactivationTimeoutSeconds) {
-        this.automaticDeactivationTimeoutSeconds = automaticDeactivationTimeoutSeconds;
-    }
-
-    public void setClock(Clock clock) {
-        this.clock = clock;
     }
 
     private String buildBaseUrl(String endpoint){
