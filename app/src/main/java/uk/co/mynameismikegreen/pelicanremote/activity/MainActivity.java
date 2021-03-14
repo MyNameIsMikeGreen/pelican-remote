@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
     private void setStatusToggleButtonClickListener(final int buttonId, final String endpoint) {
         findViewById(buttonId).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                new PelicanRequest().execute(endpoint);
+                PelicanRequest.execute(endpoint);
             }
         });
     }
