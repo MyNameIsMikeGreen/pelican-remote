@@ -13,6 +13,7 @@ public class PelicanUrlBuilder {
     private static final String DEACTIVATION_ENDPOINT = "/actions/deactivate";
     private static final String STATUS_ENDPOINT = "/status";
     private static final String RESCAN_ENDPOINT = "/actions/rescan";
+    public static final String TIMEOUT_PARAM = "?timeout_seconds=";
 
     public enum Endpoint{
         ACTIVATE,
@@ -41,11 +42,11 @@ public class PelicanUrlBuilder {
 
             case ACTIVATE:
                 return buildBaseUrl(ACTIVATION_ENDPOINT)
-                        + "?timeout_seconds=" + this.automaticDeactivationTimeoutSeconds;
+                        + TIMEOUT_PARAM + this.automaticDeactivationTimeoutSeconds;
 
             case ACTIVATE_UNTIL_MIDNIGHT:
                 return buildBaseUrl(ACTIVATION_ENDPOINT)
-                        + "?timeout_seconds=" + secondsUntilMidnight();
+                        + TIMEOUT_PARAM + secondsUntilMidnight();
 
             case DEACTIVATE:
                 return buildBaseUrl(DEACTIVATION_ENDPOINT);
@@ -55,7 +56,7 @@ public class PelicanUrlBuilder {
 
             case RESCAN:
                 return buildBaseUrl(RESCAN_ENDPOINT)
-                        + "?timeout_seconds=" + this.automaticDeactivationTimeoutSeconds;
+                        + TIMEOUT_PARAM + this.automaticDeactivationTimeoutSeconds;
 
             default:
                 return null;
