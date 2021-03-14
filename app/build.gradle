@@ -27,15 +27,15 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    implementation 'androidx.preference:preference:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.preference:preference:1.1.1'
     implementation 'com.takisoft.preferencex:preferencex:1.1.0'
     compileOnly 'org.projectlombok:lombok:1.18.18'
     annotationProcessor 'org.projectlombok:lombok:1.18.18'
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'com.squareup.okhttp3:mockwebserver:3.6.0'
-    testImplementation('pl.pragmatists:JUnitParams:1.0.5')
-    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:3.6.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.9.1'
+    testImplementation('pl.pragmatists:JUnitParams:1.1.1')
+    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.9.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
