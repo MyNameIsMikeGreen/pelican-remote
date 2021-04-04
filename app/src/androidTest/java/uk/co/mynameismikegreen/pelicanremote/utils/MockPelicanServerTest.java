@@ -1,21 +1,17 @@
-package uk.co.mynameismikegreen.pelicanremote;
+package uk.co.mynameismikegreen.pelicanremote.utils;
+
+import com.github.tomakehurst.wiremock.WireMockServer;
 
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import com.github.tomakehurst.wiremock.WireMockServer;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 
-public class PelicanRequestTest {
-
-
-    private final PelicanRequest pelicanRequest = new PelicanRequest();
+public class MockPelicanServerTest {
 
     public static final WireMockServer mockServer = new WireMockServer(wireMockConfig());
 
@@ -34,21 +30,19 @@ public class PelicanRequestTest {
         mockServer.stop();
     }
 
-    @Test
-    public void returnsResponseBodyAsString() {
-        // Given: a server returning fixed data
-        String serverResponse = "My server response";
-        String endpoint = "/status";
+    public void setPelicanStub(String endpoint, String serverResponse) {
         mockServer.stubFor(get(urlPathEqualTo(endpoint))
                 .willReturn(aResponse().withHeader("Content-Type", "application/json")
                         .withBody(serverResponse)
                         .withStatus(200)));
+    }
 
-        // When: the class performs its background task
-        String result = pelicanRequest.doInBackground("http://localhost:" + mockServer.port() + endpoint);
+    public String getMockPelicanServerHost(){
+        return "localhost";
+    }
 
-        // Then: the server response is returned
-        Assert.assertEquals(serverResponse, result);
+    public int getMockPelicanServerPort(){
+        return mockServer.port();
     }
 
 }

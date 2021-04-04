@@ -8,31 +8,27 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import okhttp3.mockwebserver.MockWebServer;
-
-import static uk.co.mynameismikegreen.pelicanremote.utils.PelicanUtils.setUpMockWebServer;
+import uk.co.mynameismikegreen.pelicanremote.utils.MockPelicanServerTest;
 
 
 @RunWith(AndroidJUnit4.class)
-public class PelicanRequestTest {
+public class PelicanRequestTest extends MockPelicanServerTest {
 
     @Test
-    public void publicMethodReturnsAnAsyncTaskWrappingTheCoreBackgroundTask() throws IOException, ExecutionException, InterruptedException {
+    public void publicMethodReturnsAnAsyncTaskWrappingTheCoreBackgroundTask() throws ExecutionException, InterruptedException {
         // Given: a server returning fixed data
         String serverResponse = "My server response";
-        MockWebServer mockWebServer = setUpMockWebServer(serverResponse);
+        String endpoint = "/status";
+        setPelicanStub(endpoint, serverResponse);
 
         // When: the request is executed
-        AsyncTask<String, String, String> result = PelicanRequest.execute(mockWebServer.url("/status").toString());
+        AsyncTask<String, String, String> result = PelicanRequest.execute(
+                "http://" + getMockPelicanServerHost() + ":" + getMockPelicanServerPort() + endpoint
+        );
 
         // Then: the result of the async task is the server response body
         Assert.assertEquals(serverResponse, result.get());
-
-        // Cleanup
-        mockWebServer.shutdown();
-
     }
 }
