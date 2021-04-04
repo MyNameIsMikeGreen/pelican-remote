@@ -9,11 +9,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.util.concurrent.ExecutionException;
 
-import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
+
+import static uk.co.mynameismikegreen.pelicanremote.utils.PelicanUtils.setUpMockWebServer;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -34,12 +34,5 @@ public class PelicanRequestTest {
         // Cleanup
         mockWebServer.shutdown();
 
-    }
-
-    private MockWebServer setUpMockWebServer(String serverResponse) throws IOException {
-        MockWebServer mockWebServer = new MockWebServer();
-        mockWebServer.enqueue(new MockResponse().setResponseCode(HttpURLConnection.HTTP_OK).setBody(serverResponse));
-        mockWebServer.start();
-        return mockWebServer;
     }
 }

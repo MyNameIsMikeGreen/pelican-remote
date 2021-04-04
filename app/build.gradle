@@ -21,6 +21,15 @@ android {
         }
     }
 
+    sourceSets {
+        androidTest.resources.srcDirs += 'src/test/resources'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
+
 }
 
 dependencies {
@@ -38,4 +47,5 @@ dependencies {
     androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.9.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation("com.github.tomakehurst:wiremock-standalone:2.18.0")
 }
