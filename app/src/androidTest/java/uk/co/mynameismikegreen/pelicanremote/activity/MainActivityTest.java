@@ -108,6 +108,28 @@ public class MainActivityTest extends MockPelicanServerTestSuper {
         assertButtonState(R.id.rescanButton, true, true);
     }
 
+    @Test
+    public void modifyingServer() throws InterruptedException {
+        // Given: App is launched
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Editor preferencesEditor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+
+        // And: App is configured to use a modifying server
+        setPelicanStub("/status", readResource("status_response_modifying.json"));
+        preferencesEditor.putString("address", getMockPelicanServerHost());
+        preferencesEditor.putString("port", String.valueOf(getMockPelicanServerPort()));
+        preferencesEditor.commit();
+
+        // When: The app displays the correct label
+        waitForLabel(R.id.status_result_label, "MODIFYING");
+
+        // Then: Only the activate buttons are disabled
+        assertButtonState(R.id.activateButton, true, false);
+        assertButtonState(R.id.activateUntilMidnightButton, true, false);
+        assertButtonState(R.id.deactivateButton, true, false);
+        assertButtonState(R.id.rescanButton, true, false);
+    }
+
     private void assertButtonState(int buttonId, boolean visible, boolean enabled) {
         Matcher<View> visibleMatcher = visible ? isDisplayed() : not(isDisplayed());
         Matcher<View> enabledMatcher = enabled ? isEnabled() : not(isEnabled());
