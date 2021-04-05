@@ -1,7 +1,7 @@
 Pelican Remote
 ==============
 
-![Pelican Logo](app/src/main/ic_launcher-playstore.png)
+![Pelican Logo](app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
 
 Remote for controlling [Pelican Server](https://github.com/mikegreen1995/pelican-server) from a mobile device.
 
