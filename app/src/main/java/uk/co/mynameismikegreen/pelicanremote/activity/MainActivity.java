@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String ACTIVATED = "ACTIVATED";
     public static final String DEACTIVATED = "DEACTIVATED";
     public static final String MODIFYING = "MODIFYING";
+    public static final String SCANNING = "SCANNING";
     public static final String STATUS = "status";
     public static final String LAST_CHANGE = "lastChange";
     public static final String LAST_CHANGE_BY = "lastChangeBy";
@@ -156,10 +157,10 @@ public class MainActivity extends AppCompatActivity {
         setLastChangeLabelText(serverResponseJson);
         setLastChangeByLabelText(serverResponseJson);
         setDeactivationTimeLabelText(serverResponseJson);
-        disableAppropriateActionButton(serverResponseJson);
+        setActionButtonStates(serverResponseJson);
     }
 
-    private void disableAppropriateActionButton(JSONObject serverResponseJson) throws JSONException {
+    private void setActionButtonStates(JSONObject serverResponseJson) throws JSONException {
         String status = serverResponseJson.getString(STATUS);
         switch (status) {
             case ACTIVATED:
@@ -175,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.rescanButton).setEnabled(false);
                 break;
             case MODIFYING:
+            case SCANNING:
                 findViewById(R.id.activateButton).setEnabled(false);
                 findViewById(R.id.activateUntilMidnightButton).setEnabled(false);
                 findViewById(R.id.deactivateButton).setEnabled(false);
@@ -202,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 statusResultLabel.setTextColor(Color.RED);
                 break;
             case MODIFYING:
+            case SCANNING:
                 statusResultLabel.setTextColor(Color.BLUE);
                 break;
             default:
