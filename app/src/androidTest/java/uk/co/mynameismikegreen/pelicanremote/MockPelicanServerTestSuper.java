@@ -1,4 +1,4 @@
-package uk.co.mynameismikegreen.pelicanremote.utils;
+package uk.co.mynameismikegreen.pelicanremote;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 
@@ -11,7 +11,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 
-public class MockPelicanServerTest {
+public class MockPelicanServerTestSuper {
 
     public static final WireMockServer mockServer = new WireMockServer(wireMockConfig());
 

@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
 import uk.co.mynameismikegreen.pelicanremote.R;
-import uk.co.mynameismikegreen.pelicanremote.utils.MockPelicanServerTest;
+import uk.co.mynameismikegreen.pelicanremote.MockPelicanServerTestSuper;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -31,7 +31,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest extends MockPelicanServerTest {
+public class MainActivityTest extends MockPelicanServerTestSuper {
 
     public static final String BAD_ADDRESS = "192.0.2.0";
 

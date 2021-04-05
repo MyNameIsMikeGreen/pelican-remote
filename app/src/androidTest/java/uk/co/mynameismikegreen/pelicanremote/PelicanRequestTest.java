@@ -10,11 +10,9 @@ import org.junit.runner.RunWith;
 
 import java.util.concurrent.ExecutionException;
 
-import uk.co.mynameismikegreen.pelicanremote.utils.MockPelicanServerTest;
-
 
 @RunWith(AndroidJUnit4.class)
-public class PelicanRequestTest extends MockPelicanServerTest {
+public class PelicanRequestTest extends MockPelicanServerTestSuper {
 
     @Test
     public void publicMethodReturnsAnAsyncTaskWrappingTheCoreBackgroundTask() throws ExecutionException, InterruptedException {
