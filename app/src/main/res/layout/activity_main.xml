@@ -25,7 +25,7 @@
         android:id="@+id/status_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         android:text="@string/status_label"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -153,7 +153,7 @@
         android:layout_width="347dp"
         android:layout_height="54dp"
         android:text="@string/rescan_button_label"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
