@@ -1,122 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".activity.MainActivity"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
+    <TextView
+        android:id="@+id/status_result_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/status_not_connected"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_label" />
+
+    <TextView
+        android:id="@+id/status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="@string/status_label"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activity.MainActivity">
+        android:id="@+id/status_label_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_result_label">
 
         <TextView
-            android:id="@+id/deactivation_time_result_label"
+            android:id="@+id/last_change_by_result_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:text="DEACTIVATION_TIME"
+            android:layout_marginTop="8dp"
+            android:text="LAST CHANGED BY"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/deactivation_time_label"
-            app:layout_constraintStart_toEndOf="@+id/deactivation_time_label"
-            app:layout_constraintTop_toTopOf="@+id/deactivation_time_label"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBottom_toBottomOf="@+id/last_change_label2"
+            app:layout_constraintStart_toStartOf="@+id/last_change_result_label"
+            app:layout_constraintTop_toTopOf="@+id/last_change_label2"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/deactivation_time_label"
+            android:id="@+id/last_change_label2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/deactivation_time_label"
-            app:layout_constraintStart_toStartOf="@+id/last_change_label"
-            app:layout_constraintTop_toBottomOf="@+id/last_change_label" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-        <TextView
-            android:id="@+id/status_result_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/status_not_connected"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            android:text="@string/last_changed_by_label"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status_label" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
-        <TextView
-            android:id="@+id/status_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:text="@string/status_label"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/activateButton"
-            android:layout_width="347dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="112dp"
-            android:text="@string/activate_button_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/last_change_label" />
-
-        <Button
-            android:id="@+id/activateUntilMidnightButton"
-            android:layout_width="347dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="28dp"
-            android:text="@string/activate_until_midnight_button_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activateButton" />
-
-        <Button
-            android:id="@+id/deactivateButton"
-            android:layout_width="347dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="28dp"
-            android:text="@string/deactivate_button_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activateUntilMidnightButton" />
-
-        <Button
-            android:id="@+id/rescanButton"
-            android:layout_width="347dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="28dp"
-            android:text="@string/rescan_button_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deactivateButton" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/last_change_result_label"
@@ -139,31 +85,77 @@
             app:layout_constraintTop_toBottomOf="@+id/last_change_label2" />
 
         <TextView
-            android:id="@+id/last_change_by_result_label"
+            android:id="@+id/deactivation_time_result_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="LAST CHANGED BY"
+            android:layout_marginStart="56dp"
+            android:text="DEACTIVATION_TIME"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/last_change_label2"
-            app:layout_constraintStart_toStartOf="@+id/last_change_result_label"
-            app:layout_constraintTop_toTopOf="@+id/last_change_label2"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintBottom_toBottomOf="@+id/deactivation_time_label"
+            app:layout_constraintStart_toEndOf="@+id/deactivation_time_label"
+            app:layout_constraintTop_toTopOf="@+id/deactivation_time_label"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/last_change_label2"
+            android:id="@+id/deactivation_time_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="96dp"
-            android:layout_marginTop="36dp"
-            android:text="@string/last_changed_by_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status_result_label" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="16dp"
+            android:text="@string/deactivation_time_label"
+            app:layout_constraintStart_toStartOf="@+id/last_change_label"
+            app:layout_constraintTop_toBottomOf="@+id/last_change_result_label" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/activateButton"
+        android:layout_width="347dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="28dp"
+        android:text="@string/activate_button_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/activateUntilMidnightButton"/>
+
+    <Button
+        android:id="@+id/activateUntilMidnightButton"
+        android:layout_width="347dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="28dp"
+        android:text="@string/activate_until_midnight_button_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/deactivateButton" />
+
+    <Button
+        android:id="@+id/deactivateButton"
+        android:layout_width="347dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="28dp"
+        android:text="@string/deactivate_button_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rescanButton" />
+
+    <Button
+        android:id="@+id/rescanButton"
+        android:layout_width="347dp"
+        android:layout_height="54dp"
+        android:text="@string/rescan_button_label"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
