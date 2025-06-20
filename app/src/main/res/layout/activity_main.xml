@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:context=".activity.MainActivity"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    tools:context=".activity.MainActivity">
 
     <TextView
         android:id="@+id/status_result_label"
@@ -47,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="LAST CHANGED BY"
+            android:text="@string/last_changed_default_value"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/last_change_label2"
             app:layout_constraintStart_toStartOf="@+id/last_change_result_label"
@@ -60,15 +59,14 @@
             android:layout_height="wrap_content"
             android:text="@string/last_changed_by_label"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
             android:id="@+id/last_change_result_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LAST CHANGE"
+            android:text="@string/last_changed_default_value"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/last_change_label"
             app:layout_constraintStart_toStartOf="@+id/deactivation_time_result_label"
@@ -89,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="56dp"
-            android:text="DEACTIVATION_TIME"
+            android:text="@string/deactivation_time_default_value"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/deactivation_time_label"
             app:layout_constraintStart_toEndOf="@+id/deactivation_time_label"
@@ -114,46 +112,45 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <Button
         android:id="@+id/activateButton"
-        android:layout_width="347dp"
+        android:layout_width="320dp"
         android:layout_height="54dp"
         android:layout_marginBottom="28dp"
         android:text="@string/activate_button_label"
+        app:layout_constraintBottom_toTopOf="@+id/activateUntilMidnightButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/activateUntilMidnightButton"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/activateUntilMidnightButton"
-        android:layout_width="347dp"
+        android:layout_width="320dp"
         android:layout_height="54dp"
         android:layout_marginBottom="28dp"
         android:text="@string/activate_until_midnight_button_label"
+        app:layout_constraintBottom_toTopOf="@+id/deactivateButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/deactivateButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/deactivateButton"
-        android:layout_width="347dp"
+        android:layout_width="320dp"
         android:layout_height="54dp"
         android:layout_marginBottom="28dp"
         android:text="@string/deactivate_button_label"
+        app:layout_constraintBottom_toTopOf="@+id/rescanButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/rescanButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/rescanButton"
-        android:layout_width="347dp"
+        android:layout_width="320dp"
         android:layout_height="54dp"
-        android:text="@string/rescan_button_label"
         android:layout_marginBottom="60dp"
+        android:text="@string/rescan_button_label"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

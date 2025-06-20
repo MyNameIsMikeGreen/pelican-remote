@@ -7,21 +7,25 @@
     <string name="refresh_status_label">Refresh Status</string>
     <string name="status_not_connected">NOT CONNECTED</string>
     <string name="last_changed_by_label">Last Changed By:</string>
+    <string name="last_changed_by_default_value">N/A</string>
     <string name="last_changed_label">Last Changed:</string>
+    <string name="last_changed_default_value">N/A</string>
     <string name="last_change_not_found">N/A</string>
     <string name="last_change_by_not_found">N/A</string>
     <string name="deactivation_time_not_found">N/A</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="deactivation_time_label">Deactivation</string>
+    <string name="deactivation_time_label">Deactivation:</string>
+    <string name="deactivation_time_default_value">N/A</string>
+    <string name="rescan_button_label">Rescan</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
 
+    <!-- Settings Defaults -->
     <string name="default_protocol">http</string>
-    <string name="default_address">192.168.5.101</string>
+    <string name="default_address">192.168.1.170</string>
     <string name="default_port">8000</string>
     <string name="default_deactivation_timeout_hours">6</string>
     <string name="default_status_poll_interval_seconds">1</string>
-    <string name="rescan_button_label">Rescan</string>
 </resources>

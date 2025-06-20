@@ -1,7 +1,8 @@
 package uk.co.mynameismikegreen.pelicanremote.activity;
 
+import static androidx.appcompat.R.style.Theme_AppCompat_Light_NoActionBar;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
@@ -12,7 +13,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -48,16 +48,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
+        setTheme(Theme_AppCompat_Light_NoActionBar);
         super.onCreate(savedInstanceState);
-        this.urlBuilder = new PelicanUrlBuilder(
-                getString(R.string.default_protocol),
-                getString(R.string.default_address),
-                getString(R.string.default_port)
-        );
+        this.urlBuilder = new PelicanUrlBuilder(getString(R.string.default_protocol), getString(R.string.default_address), getString(R.string.default_port));
         this.settings = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.activity_main);
-        setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
+        setSupportActionBar(findViewById(R.id.toolbar));
     }
 
     @Override
@@ -95,9 +91,7 @@ public class MainActivity extends AppCompatActivity {
         urlBuilder.setServerProtocol(settings.getString("protocol", getString(R.string.default_protocol)));
         urlBuilder.setServerAddress(settings.getString("address", getString(R.string.default_address)));
         urlBuilder.setServerPort(settings.getString("port", getString(R.string.default_port)));
-        urlBuilder.setAutomaticDeactivationTimeoutSeconds(convertHoursStringToSeconds(
-                settings.getString("deactivation_timeout", getString(R.string.default_deactivation_timeout_hours)))
-        );
+        urlBuilder.setAutomaticDeactivationTimeoutSeconds(convertHoursStringToSeconds(settings.getString("deactivation_timeout", getString(R.string.default_deactivation_timeout_hours))));
     }
 
     private String convertHoursStringToSeconds(String hoursString) {
@@ -106,16 +100,11 @@ public class MainActivity extends AppCompatActivity {
 
     private Runnable statusUpdaterRunnable() {
         return new Runnable() {
-                public void run() {
-                    statusHandler.postDelayed(this, Integer.parseInt(
-                            convertSecondsStringToMillis(settings.getString(
-                                "poll_interval_seconds",
-                                getString(R.string.default_status_poll_interval_seconds))
-                            )
-                    ));
-                    refreshStatus();
-                }
-            };
+            public void run() {
+                statusHandler.postDelayed(this, Integer.parseInt(convertSecondsStringToMillis(settings.getString("poll_interval_seconds", getString(R.string.default_status_poll_interval_seconds)))));
+                refreshStatus();
+            }
+        };
     }
 
     private String convertSecondsStringToMillis(String secondsString) {
@@ -123,9 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshStatus() {
-        AsyncTask<String, String, String> result = PelicanRequest.execute(
-                urlBuilder.build(PelicanUrlBuilder.Endpoint.STATUS)
-        );
+        AsyncTask<String, String, String> result = PelicanRequest.execute(urlBuilder.build(PelicanUrlBuilder.Endpoint.STATUS));
 
         try {
             String serverResponse = result.get();
@@ -135,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void changeElementsToNotConnectedMode(){
+    private void changeElementsToNotConnectedMode() {
         TextView statusResultLabel = findViewById(R.id.status_result_label);
         statusResultLabel.setText(getString(R.string.status_not_connected));
         statusResultLabel.setTextColor(Color.GRAY);
@@ -214,28 +201,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setLastChangeLabelText(JSONObject serverResponseJson) throws JSONException {
-        extractAndSetDateLabel(R.id.last_change_result_label, serverResponseJson, LAST_CHANGE,
-                "yyyy-MM-dd HH:mm:ss.n", getString(R.string.last_change_not_found));
+        extractAndSetDateLabel(R.id.last_change_result_label, serverResponseJson, LAST_CHANGE, "yyyy-MM-dd HH:mm:ss.n", getString(R.string.last_change_not_found));
     }
 
-    private void extractAndSetDateLabel(int labelId, JSONObject serverResponseJson, String key,
-                                        String incomingFormat, String defaultValue) throws JSONException {
+    private void extractAndSetDateLabel(int labelId, JSONObject serverResponseJson, String key, String incomingFormat, String defaultValue) throws JSONException {
         String result = defaultValue;
         String lastChange = serverResponseJson.getString(key);
         try {
             result = normaliseDateFormat(lastChange, incomingFormat);
+        } catch (DateTimeParseException ignored) {
         }
-        catch(DateTimeParseException ignored) {}
         TextView lastChangeResultLabel = findViewById(labelId);
         lastChangeResultLabel.setText(result);
     }
 
     private void setDeactivationTimeLabelText(JSONObject serverResponseJson) throws JSONException {
-        extractAndSetDateLabel(R.id.deactivation_time_result_label, serverResponseJson,
-                SCHEDULED_DEACTIVATION, "yyyy-MM-dd HH:mm:ss", getString(R.string.deactivation_time_not_found));
+        extractAndSetDateLabel(R.id.deactivation_time_result_label, serverResponseJson, SCHEDULED_DEACTIVATION, "yyyy-MM-dd HH:mm:ss", getString(R.string.deactivation_time_not_found));
     }
 
-    private String normaliseDateFormat(String dateString, String incomingFormat){
+    private String normaliseDateFormat(String dateString, String incomingFormat) {
         LocalDateTime dateTime = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern(incomingFormat));
         DateTimeFormatter outgoingFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd\nHH:mm:ss");
         return dateTime.format(outgoingFormat);
@@ -248,11 +232,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setStatusToggleButtonClickListener(final int buttonId, final String endpoint) {
-        findViewById(buttonId).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                PelicanRequest.execute(endpoint);
-            }
-        });
+        findViewById(buttonId).setOnClickListener(v -> PelicanRequest.execute(endpoint));
     }
 
 }
